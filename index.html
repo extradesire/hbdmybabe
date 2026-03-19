@@ -1,10 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>My Website 🎁</title>
+<meta charset="UTF-8">
+<title>Enter Code</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+.container{
+background:rgba(255,255,255,0.15);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+input{
+width:220px;
+padding:15px;
+font-size:28px;
+text-align:center;
+border:none;
+border-radius:10px;
+outline:none;
+letter-spacing:10px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:white;
+color:#ff4d6d;
+cursor:pointer;
+font-weight:bold;
+}
+
+#error{
+margin-top:10px;
+color:#fff;
+font-size:14px;
+}
+</style>
 </head>
+
 <body>
-  <h1>Hello 💖</h1>
-  <p>นี่คือเว็บของฉัน!</p>
+
+<div class="container">
+<h2>🔐 ใส่รหัสลับ 6 หลัก</h2>
+
+<input id="code" maxlength="6" placeholder="______">
+
+<br>
+
+<button onclick="checkCode()">ยืนยัน</button>
+
+<p id="error"></p>
+</div>
+
+<script>
+
+function checkCode(){
+
+let code=document.getElementById("code").value;
+
+if(code==="200308"){
+alert("รหัสถูกต้อง! ไปหน้าถัดไปได้เลย 🎁");
+}else{
+document.getElementById("error").innerText="รหัสไม่ถูกต้อง";
+}
+
+}
+
+</script>
+
 </body>
 </html>
