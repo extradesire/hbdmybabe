@@ -2,43 +2,56 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Enter Code</title>
+<title>For You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
 background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-color:white;
-text-align:center;
+padding:15px;
 }
 
+/* PAGE */
+.page{
+position:absolute;
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+/* INPUT */
 .container{
 background:rgba(255,255,255,0.15);
-padding:40px;
+padding:25px;
 border-radius:20px;
 backdrop-filter:blur(10px);
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
+color:white;
+width:100%;
+max-width:400px;
+text-align:center;
 }
 
 input{
-width:220px;
+width:100%;
 padding:15px;
-font-size:28px;
+font-size:26px;
 text-align:center;
 border:none;
 border-radius:10px;
+letter-spacing:8px;
 outline:none;
-letter-spacing:10px;
 }
 
 button{
 margin-top:20px;
-padding:12px 25px;
+padding:12px;
+width:100%;
 font-size:18px;
 border:none;
 border-radius:10px;
@@ -48,40 +61,141 @@ cursor:pointer;
 font-weight:bold;
 }
 
-#error{
-margin-top:10px;
-color:#fff;
+/* MAIL */
+.mail{
+width:100%;
+max-width:600px;
+background:white;
+border-radius:20px;
+padding:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.2);
+color:#333;
+
+max-height:80vh;
+overflow-y:auto;
+}
+
+.header{
+border-bottom:1px solid #eee;
+padding-bottom:10px;
+margin-bottom:15px;
 font-size:14px;
+color:#666;
+text-align:left;
+}
+
+#content{
+font-size:16px;
+line-height:1.8;
+white-space:pre-line;
+text-align:left;
+}
+
+/* CURSOR */
+.cursor{
+display:inline-block;
+width:2px;
+background:#333;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
 }
 </style>
 </head>
 
 <body>
 
+<!-- PAGE 1 -->
+<div id="page1" class="page">
 <div class="container">
 <h2>🔐 ใส่รหัสลับ 6 หลัก</h2>
 
-<input id="code" maxlength="6" placeholder="______">
-
-<br>
+<input id="code" maxlength="6" inputmode="numeric" placeholder="______">
 
 <button onclick="checkCode()">ยืนยัน</button>
-
 <p id="error"></p>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page" style="display:none">
+<div class="mail">
+
+<div class="header">
+From: กุ๊งกิ๊งก๊องแก๊งของมอส ❤️<br>
+To: มอสมอสเบ้บบี้ของกุ๊งกิ๊ง<br>
+Subject: สุขสันต์วันเกิดปีที่18นะคะะ 🎂
+</div>
+
+<div id="content"></div><span class="cursor"></span>
+
+</div>
 </div>
 
 <script>
 
-function checkCode(){
+/* กด Enter ได้ */
+document.getElementById("code").addEventListener("keypress", function(e){
+if(e.key === "Enter"){
+checkCode();
+}
+});
 
+/* เช็ครหัส */
+function checkCode(){
 let code=document.getElementById("code").value;
 
 if(code==="200308"){
-alert("รหัสถูกต้อง! ไปหน้าถัดไปได้เลย 🎁");
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="flex";
+typeWriter();
 }else{
 document.getElementById("error").innerText="รหัสไม่ถูกต้อง";
 }
+}
 
+/* พิมพ์ข้อความ */
+let text = `สวัสดีค่ะมอสสสสส
+
+วันนี้วันเกิดใครน้าเหมือนมีแม่หมอมากระซิบกิ๊งน่ะ
+รู้สึกว่าจะเป็นวันเกิดของคุณศุภฤกษ์รึป่าวคะ
+
+กิ๊งตื่นเต้นนะคะที่ได้เป็นส่วนหนึ่งในวันเกิดของมอสปีนี้
+ม่ายรู้ว่าจะสามารถบอกว่าตัวเองเป็นของขวัญให้มอสได้มั้ย
+แต่ว่ากิ๊งอยากให้วันเกิดทุกปีของมอสหลังจากนี้
+เป็นวันที่มอสรอคอยนะ อยากให้มอสตื่นเต้นกับมัน
+อยากให้มอสนับถอยหลังวันเกิดในทุกๆปี
+มีความสุขทุกวันหลังจากนี้ ตลอดไปเลยยย
+
+วันเกิดปีนี้กิ๊งขอให้เป็นปีที่ทำให้มอสได้เรียนรู้
+อะไรหลายๆอย่างเลย ถึงต่อให้เรื่องที่เจอจะไม่ใช่
+เรื่องที่ดี แต่กิ๊งรู้ว่ามอสยินดีที่จะเรียนรู้
+ถ้ามอสไม่ไหว มอสยังมีกิ๊งอยู่นะคะ
+ไม่ว่าเรื่องนั้นจาเล็กหรือใหญ่ มอสเล่าให้กิ๊งฟังได้น้า
+กิ๊งอยากรับฟังค่ะ กิ๊งชอบทุกอย่างที่เป็นมอส
+
+หลังจากนี้...
+ยิ้มเย้อๆมีความสุขทุกครั้งที่ได้กินของอร่อยน้า
+แล้วก้หัดดูแลสุขภาพบ้างค่ะ เป็นห่วง!
+
+สุขสันต์วันเกิดปีที่18นะคะมอส 💐`;
+
+let i=0;
+
+function typeWriter(){
+if(i<text.length){
+document.getElementById("content").innerHTML += text.charAt(i);
+i++;
+
+let box = document.querySelector(".mail");
+box.scrollTop = box.scrollHeight;
+
+setTimeout(typeWriter,60);
+}
 }
 
 </script>
